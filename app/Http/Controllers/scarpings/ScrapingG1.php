@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\scarpings;
 
 use Goutte\Client;
 use Illuminate\Http\Request;
 use Symfony\Component\DomCrawler\Crawler;
+use App\Http\Controllers\Controller;
 
-class ScrapingController extends Controller
+class ScrapingG1 extends Controller
 {
     public function noticias(Request $request)
     {
@@ -27,11 +28,7 @@ class ScrapingController extends Controller
 
             $artigos[] = $artigos;
         });
-<<<<<<< HEAD
-        //dd($artigos);
-=======
 
->>>>>>> be32ac3 (criando scrapings fora do controler)
 
         return view('noticias', compact('artigos'));
     }
