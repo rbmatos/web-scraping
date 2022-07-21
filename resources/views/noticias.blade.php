@@ -14,28 +14,19 @@
     <div class="row d-flex justify-content-between">
         @foreach($artigos as $artigo)
             <div class="card col-4 pt-3 m-2 mt-4" style="width: 22rem;">
-                <a href="#">
+                <a href="{{ $artigo['link'] }}" target="_blank">
                 <img src="{{ $artigo['img'] }}" class="card-img-top rounded" alt="...">
                 </a>
                 <div class="card-body">
-<<<<<<< HEAD
-                    <h5 class="card-title">{{ $artigos['titulos'] }}</h5>
-=======
-                    <h5 class="card-title">{{ $artigo['titulos'] }}</h5>
->>>>>>> be32ac3 (criando scrapings fora do controler)
-                    <p class="card-text">Lista "The World's 50 Best Restaurants" foi anunciada nesta segunda-feira (18) durante evento em Londres. A Casa do Porco ficou entre os 10 melhores; Oteque, do RJ, conquistou a 47ª posição.</p>
+                    <h5 class="card-title">{{ $artigo['titulo'] }}</h5>
                 </div>
-                <p class="card-text text-center mb-3"><small class="text-muted">Last updated 3 mins ago</small></p>
+                <p class="card-text text-center mb-3"><small class="text-muted">{{ $artigo['time'] }}</small></p>
             </div>
         @endforeach
     </div>
 </div>
 
-<<<<<<< HEAD
 <!-- JavaScript Bundle with Popper -->
-=======
-
->>>>>>> be32ac3 (criando scrapings fora do controler)
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 </body>
 </html>

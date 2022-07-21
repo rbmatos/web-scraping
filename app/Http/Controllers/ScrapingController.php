@@ -2,36 +2,28 @@
 
 namespace App\Http\Controllers;
 
-use Goutte\Client;
-use Illuminate\Http\Request;
-use Symfony\Component\DomCrawler\Crawler;
+use App\Http\Controllers\scrapings\ScrapingCnn;
+use App\Http\Controllers\scrapings\ScrapingG1;
 
 class ScrapingController extends Controller
 {
-    public function noticias(Request $request)
+    public function index()
     {
-        $cliente = new Client();
-        $crawler = $cliente->request('GET', 'https://g1.globo.com/turismo-e-viagem/');
-
         $artigos = [];
 
-        $crawler->filter('div.bastian-feed-item')->each(function (Crawler $noticia) use (&$artigos) {
-            $artigos = [];
+        $classCnn = new ScrapingCnn();
+        $cnn = $classCnn->scrapingCnn();
 
-            $artigos['id'] = $noticia->filter('div.feed-post')->first()->attr('id');
-            $artigos['titulos'] = $noticia->filter('div.feed-post-body-title')->first();
-            $artigos['link'] = $noticia->filter('a')->first()->attr('href');
-            $artigos['noticias'] = $noticia->filter('div.feed-post-body div.feed-post-body-resumo');
-            $artigos['img'] = $noticia->filter('div.feed-post-body img')->first()->attr('src');
-            $artigos['time'] = $noticia->filter('div.feed-post-metadata');
+        for ($i = 0; $i < count($cnn); $i++){
+            $artigos[] = $cnn[$i];
+        }
 
-            $artigos[] = $artigos;
-        });
-<<<<<<< HEAD
-        //dd($artigos);
-=======
+        $classG1 = new ScrapingG1();
+        $g1 = $classG1->scrapingG1();
 
->>>>>>> be32ac3 (criando scrapings fora do controler)
+        for ($i = 0; $i < count($g1); $i++){
+            $artigos[] = $g1[$i];
+        }
 
         return view('noticias', compact('artigos'));
     }
